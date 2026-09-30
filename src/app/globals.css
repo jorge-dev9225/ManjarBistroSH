@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+  body {
+    background-color: theme(colors.carbon);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(217, 164, 65, 0.14), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 100% 30%, rgba(200, 16, 46, 0.08), transparent 60%);
+    background-attachment: fixed;
+    min-height: 100dvh;
+  }
+  ::selection { background: theme(colors.oro.DEFAULT); color: theme(colors.carbon); }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition
+      active:scale-[.97] disabled:cursor-not-allowed disabled:opacity-50
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-oro focus-visible:ring-offset-2 focus-visible:ring-offset-carbon;
+  }
+  .btn-primary { @apply btn bg-oro text-carbon shadow-lg shadow-oro/10 hover:bg-oro-claro; }
+  .btn-ghost { @apply btn border border-madera-borde bg-madera/60 text-crema hover:border-oro/60 hover:bg-madera-claro; }
+  .btn-danger { @apply btn bg-rojo text-white hover:bg-rojo-claro; }
+  .btn-sm { @apply px-3.5 py-1.5 text-xs; }
+
+  .card { @apply rounded-2xl border border-madera-borde/70 bg-madera/80 shadow-xl shadow-black/20; }
+
+  .input {
+    @apply w-full rounded-xl border border-madera-borde bg-carbon/60 px-4 py-3 text-sm text-crema placeholder:text-crema/35
+      transition focus:border-oro focus:outline-none focus:ring-2 focus:ring-oro/25;
+  }
+  .label { @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-crema/60; }
+
+  .chip {
+    @apply inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-madera-borde px-3 py-1 text-xs font-medium text-crema/80 transition;
+  }
+  .chip-active { @apply border-oro bg-oro text-carbon; }
+
+  .section-title { @apply mb-5 flex items-center gap-4 font-display text-2xl italic text-crema md:text-3xl; }
+  .section-title::after { content: ''; @apply h-px flex-1 bg-gradient-to-r from-oro/50 to-transparent; }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+  .pb-safe { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+}
